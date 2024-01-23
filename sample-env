@@ -5,3 +5,4 @@ export DB_HOST='localhost'
 export DB_PORT=5432
 export SECRET_KEY=''
 export DEBUG=TRUE
+export DATABASE_URL=''

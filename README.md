@@ -1,5 +1,9 @@
 # Consumer
-Consumer locator API. This is a REST API built with Django, Django rest framework. Uses PostgreSQL database with Postgis extension to handle geospatial data.
+Consumer locator REST API. 
+
+The REST API built with Python, Django, Django rest framework. 
+
+Uses PostgreSQL database with Postgis extension to handle geospatial data.
 
 
 ## Local Set Up
@@ -12,8 +16,6 @@ To start the app
 Seeding Consumer data. On the shell run the command below.
 
 ```docker exec -it app python manage.py seed seed_data/consumers.csv```
-
-
 
 
 ## Todo.
