@@ -1,6 +1,7 @@
 import csv
 from django.contrib.gis.geos import Point
 from django.core.management.base import BaseCommand
+from django.db import IntegrityError
 
 from api.models import Consumer
 
@@ -33,17 +34,21 @@ class Command(BaseCommand):
     
 
     def seed_data(self, consumer_data):
-        objects = []
-        for row in consumer_data:
-            point = Point(float(row[6]), float(row[5]))
-            object = Consumer(
-                consumer_id=row[0],
-                street=row[1],
-                status=row[2],
-                previous_jobs_count=int(row[3]),
-                amount_due=int(row[4]),
-                geometry=point
-            )
-            objects.append(object)
-        Consumer.objects.bulk_create(objects)
+        try:
+            objects = []
+            for row in consumer_data:
+                point = Point(float(row[6]), float(row[5]))
+                object = Consumer(
+                    consumer_id=row[0],
+                    street=row[1],
+                    status=row[2],
+                    previous_jobs_count=int(row[3]),
+                    amount_due=int(row[4]),
+                    geometry=point
+                )
+                objects.append(object)
+            Consumer.objects.bulk_create(objects)
+        except IntegrityError:
+            self.stdout.write(self.style.ERROR('Consumers seeding FAILED'))
+
         return
