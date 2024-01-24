@@ -42,25 +42,25 @@ class ConsumerTestCase(APITestCase):
         )
 
     def test_list_consumers(self):
-        response = self.client.get('/api/consumers/', format='json')
+        response = self.client.get('/api/consumers', format='json')
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data["count"], 4)
 
     def test_list_consumers_by_min_and_max_previous_jobs_count_param(self):
-        response = self.client.get('/api/consumers/?min_previous_jobs_count=2&max_previous_jobs_count=3', format='json')
+        response = self.client.get('/api/consumers?min_previous_jobs_count=2&max_previous_jobs_count=3', format='json')
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data["count"], 3)
 
     def test_list_consumers_by_previous_jobs_count(self):
-        response = self.client.get('/api/consumers/?previous_jobs_count=3', format='json')
+        response = self.client.get('/api/consumers?previous_jobs_count=3', format='json')
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data["count"], 1)
     
     def test_list_consumers_by_status(self):
-        response = self.client.get('/api/consumers/?status=active', format='json')
+        response = self.client.get('/api/consumers?status=active', format='json')
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data["count"], 1)

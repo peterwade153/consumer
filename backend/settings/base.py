@@ -124,3 +124,5 @@ REST_FRAMEWORK = {
         'consumer_listing': '60/min',
     }
 }
+
+APPEND_SLASH = False
