@@ -17,6 +17,26 @@ Seeding Consumer data. On the shell run the command below.
 
 ```docker exec -it app python manage.py seed seed_data/consumers.csv```
 
+## To test
+Use a client such as Postman to access the API and requests.
+
+Locally
+
+```http://localhost:8000/api/consumers```
+
+Accepts query params
+1. status. [collected, in_progress, active]
+2. previous_jobs_count. [any number]
+3. max_previous_jobs_count. [any number]
+4. min_previous_jobs_count. [any number]
+5. page. [any number to traverse the available pages]
+
+
+Deployed version
+
+```https://consumer-him9.onrender.com/api/consumers```
+
+
 
 ## Todo.
 
